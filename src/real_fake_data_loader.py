@@ -1,6 +1,6 @@
 import numpy as np
 from numpy import load
-
+import tensorflow as tf
 def load_real_data(filename):
 
     data = load(filename)
@@ -42,3 +42,12 @@ def generate_fake_data_coarse(g_model, batch_data, patch_shape):
     y1 = np.zeros((len(X), patch_shape[1], patch_shape[1], 1))
     y2 = np.zeros((len(X), patch_shape[2], patch_shape[2], 1))
     return [X,X_global], [y1,y2]
+
+def resize(X_realA,X_realB,out_shape):
+    X_realA = tf.image.resize(X_realA, out_shape, method=tf.image.ResizeMethod.LANCZOS3)
+    X_realA = np.array(X_realA)
+    
+    X_realB = tf.image.resize(X_realB, out_shape, method=tf.image.ResizeMethod.LANCZOS3)
+    X_realB = np.array(X_realB)
+    
+    return [X_realA,X_realB]
