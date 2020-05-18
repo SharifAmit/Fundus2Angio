@@ -47,6 +47,7 @@ if __name__ == "__main__":
     parser.add_argument('--input_dim', type=int, default=512)
     parser.add_argument('--n_crops', type=int, default=50)
     parser.add_argument('--datadir', type=str, required=True, help='path/to/data_directory',default='Dataset')
+    parser.add_argument('--output_dir', type=str, default='data')
     args = parser.parse_args()
 
     # Abnormal Fundus/Angio Image pairs
@@ -72,5 +73,5 @@ if __name__ == "__main__":
         mask = Image.open(mask_name)
         mask_arr = np.asarray(mask)
         name = str(i+1)
-        random_crop(img_arr, mask_arr, args.input_dim, args.input_dim, args.n_crops, name)
+        random_crop(img_arr, mask_arr, args.input_dim, args.input_dim, args.n_crops,name,dir_name=args.output_dir)
         k=k+1
