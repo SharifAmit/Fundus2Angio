@@ -83,6 +83,8 @@ def coarse_generator(img_shape=(256, 256, 3),ncf=64, n_downsampling=2, n_blocks=
 
     model.summary()
     return model
+
+
 def fine_generator(x_coarse_shape=(256,256,64),input_shape=(512, 512, 3), nff=32, n_blocks=3, n_coarse_gen=1,n_channels = 1):
 
     
@@ -124,6 +126,8 @@ def fine_generator(x_coarse_shape=(256,256,64),input_shape=(512, 512, 3), nff=32
 
     model.summary()
     return model
+
+
 def discriminator(input_shape_fundus=(512, 512, 3),
                         input_shape_angio=(512, 512, 1),
                         ndf=32, n_layers=3, activation='linear',
@@ -160,4 +164,34 @@ def discriminator(input_shape_fundus=(512, 512, 3),
     model = Model(inputs=[X_input_fundus, X_input_angio], outputs=X , name=name)
     model.summary()
     model.compile(loss='mse', optimizer=Adam(lr=0.0002, beta_1=0.5, beta_2=0.999))
+    return model
+
+def fundus2angio_gan(g_model_fine,g_model_coarse, d_model1, d_model2, d_model3, d_model4,image_shape_fine,image_shape_coarse,image_shape_x_coarse):
+    # Discriminator NOT trainable
+    d_model1.trainable = False
+    d_model2.trainable = False
+    d_model3.trainable = False
+    d_model4.trainable = False
+
+    in_fine= Input(shape=image_shape_fine)
+    in_coarse = Input(shape=image_shape_coarse)
+    in_x_coarse = Input(shape=image_shape_x_coarse)
+
+    # Generators
+    gen_out_coarse, _ = g_model_coarse(in_coarse)
+    gen_out_fine = g_model_fine([in_fine,in_x_coarse])
+
+    # Discriminators Fine
+    dis_out_1 = d_model1([in_fine, gen_out_fine])
+    dis_out_2 = d_model2([in_fine, gen_out_fine])
+
+    # Discriminators Coarse
+    dis_out_3 = d_model3([in_coarse, gen_out_coarse])
+    dis_out_4 = d_model4([in_coarse, gen_out_coarse])
+
+    model = Model([in_fine,in_coarse,in_x_coarse], [dis_out_1,dis_out_2,dis_out_3,dis_out_4,gen_out_coarse,gen_out_fine])
+
+    opt = Adam(lr=0.0002, beta_1=0.5)
+    model.compile(loss=['mse', 'mse','mse','mse','mse','mse'], optimizer=opt,loss_weights=[1,1,1,1,10,10])
+    model.summary()
     return model
