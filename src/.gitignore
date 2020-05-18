@@ -1,0 +1,8 @@
+data/
+Dataset/
+*.png
+*.jpeg
+*.tiff
+*.tif
+*.h5
+*.hdf5

@@ -151,7 +151,7 @@ def discriminator(input_shape_fundus=(512, 512, 3),
         X = LeakyReLU(alpha=0.2)(X)
 
 
-    nf = min(nf * 2, 512)
+    nf = min(ndf * 2, 512)
     X = Conv2D(nf, kernel_size=(4,4), strides=(1,1), padding='same',kernel_initializer=RandomNormal(stddev=0.02))(X)
     X = BatchNormalization()(X)
     X = LeakyReLU(alpha=0.2)(X)
