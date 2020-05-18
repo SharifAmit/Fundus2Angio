@@ -98,7 +98,7 @@ def fine_generator(x_coarse_shape=(256,256,64),input_shape=(512, 512, 3), nff=32
         X = ReflectionPadding2D((3,3))(X_input)
         X = Conv2D(down_filters, kernel_size=(7,7), strides=(1,1), padding='valid')(X)
         X = BatchNormalization()(X)
-        x = LeakyReLU(alpha=0.2)(X)
+        X = LeakyReLU(alpha=0.2)(X)
         X = Conv2D(down_filters*2, kernel_size=(3,3), strides=(2,2), padding='same')(X)
         X = BatchNormalization()(X)
         X = LeakyReLU(alpha=0.2)(X)
