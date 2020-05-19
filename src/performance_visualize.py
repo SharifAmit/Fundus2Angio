@@ -2,7 +2,7 @@ from matplotlib import pyplot
 from real_fake_data_loader import generate_real_data, generate_fake_data_coarse, generate_fake_data_fine, resize
 import os
 
-def summarize_performance(step,g_global_model,g_local_model, dataset, n_samples=3,savedir='weights_plots'):
+def visualize_save_weight(step,g_global_model,g_local_model, dataset, n_samples=3,savedir='weights_plots'):
     if not os.path.exists(savedir):
             os.makedirs(savedir)
     # select a sample of input images
@@ -49,7 +49,7 @@ def summarize_performance(step,g_global_model,g_local_model, dataset, n_samples=
     g_local_model.save(filename2)
     print('>Saved: %s and %s' % (filename1, filename2))
 
-def summarize_performance_global(step, g_model, dataset, n_samples=3,savedir='weights_plots'):
+def visualize_save_weight_global(step, g_model, dataset, n_samples=3,savedir='weights_plots'):
     if not os.path.exists(savedir):
         os.makedirs(savedir)
     # select a sample of input images
