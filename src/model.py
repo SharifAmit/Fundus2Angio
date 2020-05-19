@@ -85,7 +85,7 @@ def coarse_generator(img_shape=(256, 256, 3),ncf=64, n_downsampling=2, n_blocks=
     return model
 
 
-def fine_generator(x_coarse_shape=(256,256,64),input_shape=(512, 512, 3), nff=32, n_blocks=3, n_coarse_gen=1,n_channels = 1):
+def fine_generator(x_coarse_shape=(256,256,64),input_shape=(512, 512, 3), nff=64, n_blocks=3, n_coarse_gen=1,n_channels = 1):
 
     
     X_input = Input(shape=input_shape)

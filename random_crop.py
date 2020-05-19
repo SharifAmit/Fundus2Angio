@@ -43,7 +43,6 @@ def random_crop(img, mask, height, width, num_of_crops,name,stride=1,dir_name='d
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--batch', type=int, default=8)
     parser.add_argument('--input_dim', type=int, default=512)
     parser.add_argument('--n_crops', type=int, default=50)
     parser.add_argument('--datadir', type=str, required=True, help='path/to/data_directory',default='Dataset')

@@ -1,6 +1,11 @@
 from src.model import coarse_generator,fine_generator,fundus2angio_gan,discriminator
 from src.performance_visualize import visualize_save_weight, visualize_save_weight_global, plot_history
-from src.real_fake_data_loader import resize, generate_fake_data_coarse, generate_fake_data_fine, generate_real_data
+from src.real_fake_data_loader import resize, generate_fake_data_coarse, generate_fake_data_fine, generate_real_data, load_real_data
+import argparse
+import time
+from numpy import load
+import gc
+import keras.backend as K
 
 def train(d_model1, d_model2, d_model3, d_model4, g_global_model, g_local_model, gan_model, dataset, n_epochs=20, n_batch=1, n_patch=[64,32]):
     # unpack dataset
@@ -127,6 +132,60 @@ def train(d_model1, d_model2, d_model3, d_model4, g_global_model, g_local_model,
             
             visualize_save_weight(i, g_global_model,g_local_model, dataset, n_samples=3)
     plot_history(d1_hist, d2_hist, d3_hist, d4_hist, d5_hist, d6_hist, d7_hist, d8_hist, g_global_hist,g_local_hist, gan_hist)
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--epochs', type=int, default=100)
+    parser.add_argument('--batch_size', type=int, default=4)
+    parser.add_argument('--npz_file', type=str, default='fun2angio', help='path/to/npz/file')
+    parser.add_argument('--input_dim', type=int, default=512)
+    parser.add_argument('--datadir', type=str, required=True, help='path/to/data_directory',default='fundus2angio')
+    args = parser.parse_args()
+
+    K.clear_session()
+    gc.collect()
+    start_time = time.time()
+    dataset = load_real_data(args.npz_file+'.npz')
+    print('Loaded', dataset[0].shape, dataset[1].shape)
+    
+    # define input shape based on the loaded dataset
+    in_size = args.input_dim
+    image_shape_coarse = (in_size/2,in_size/2,3)
+    label_shape_coarse = (in_size/2,in_size/2,1)
+
+    #image_shape_coarse2 = (in_size/4,in_size/4,3)
+    #label_shape_coarse2 = (in_size/4,in_size/4,1)
+
+    image_shape_fine = (in_size,in_size,3)
+    label_shape_fine = (in_size,in_size,1)
+
+    image_shape_xglobal = (in_size/2,in_size/2,64)
+    ndf=32
+    ncf=64
+    nff=64
+    # define discriminator models
+    d_model1 = discriminator(image_shape_fine,label_shape_fine,ndf,n_downsampling=0,name="D1") # D1 Fine
+    d_model2 = discriminator(image_shape_fine,label_shape_fine,ndf,n_downsampling=1,name="D2") # D2 Fine 
+
+    d_model3 = discriminator(image_shape_coarse,label_shape_coarse,ndf,n_downsampling=0,name="D3") # D1 Coarse
+    d_model4 = discriminator(image_shape_coarse,label_shape_coarse,ndf,n_downsampling=1,name="D4") # D2 Coarse
+
+
+    # define generator models
+    g_coarse_model = coarse_generator(img_shape=image_shape_coarse,n_downsampling=2, n_blocks=9, n_channels=1)
+
+    g_fine_model = fine_generator(x_coarse_shape=image_shape_xglobal,input_shape=image_shape_fine,nff=nff,n_blocks=3)
+
+    # define fundus2angio 
+    gan_model = fundus2angio_gan(g_fine_model,g_coarse_model,d_model1,d_model2,d_model3,d_model4,image_shape_fine,image_shape_coarse,image_shape_xglobal)
+    # train model
+    train(d_model1, d_model2, d_model3, d_model4,g_coarse_model, g_fine_model, gan_model, dataset, n_epochs=args.epochs, n_batch=args.batch_size, n_patch=[64,32,16])
+    end_time = time.time()
+    time_taken = (end_time-start_time)/3600.0
+    print(time_taken)
+
 
 
         
