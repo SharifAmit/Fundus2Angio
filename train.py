@@ -127,4 +127,6 @@ def train(d_model1, d_model2, d_model3, d_model4, g_global_model, g_local_model,
             
             visualize_save_weight(i, g_global_model,g_local_model, dataset, n_samples=3)
     plot_history(d1_hist, d2_hist, d3_hist, d4_hist, d5_hist, d6_hist, d7_hist, d8_hist, g_global_hist,g_local_hist, gan_hist)
+
+
         
