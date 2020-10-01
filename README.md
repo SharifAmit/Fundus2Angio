@@ -38,3 +38,8 @@ sudo pip3 install keras==2.3.1
 ```
 sudo pip3 -r requirements.txt
 ```
+
+### Dataset download link for Hajeb et al.
+```
+https://sites.google.com/site/hosseinrabbanikhorasgani/datasets-1/fundus-fluorescein-angiogram-photographs--colour-fundus-images-of-diabetic-patients
+```
