@@ -5,16 +5,28 @@ This code is part of the supplementary materials for the ISVC 2020 for our paper
 ```
 https://arxiv.org/abs/2005.05267
 ```
-
+### IEEE Xplore Digital Library
+```
+https://ieeexplore.ieee.org/document/9190742
+```
 
 # Citation 
 ```
-@article{kamran2020fundus2angio,
-  title={Fundus2Angio: A Novel Conditional GAN Architecture for Generating Fluorescein Angiography Images from Retinal Fundus Photography},
-  author={Kamran, Sharif Amit and Hossain, Khondker Fariha and Tavakkoli, Alireza and Zuckerbrod, Stewart Lee},
-  journal={arXiv preprint arXiv:2005.05267},
-  year={2020}
-}
+@INPROCEEDINGS{9190742,
+
+  author={S. A. {Kamran} and A. {Tavakkoli} and S. L. {Zuckerbrod}},
+
+  booktitle={2020 IEEE International Conference on Image Processing (ICIP)}, 
+
+  title={Improving Robustness Using Joint Attention Network for Detecting Retinal Degeneration From Optical Coherence Tomography Images}, 
+
+  year={2020},
+
+  volume={},
+
+  number={},
+
+  pages={2476-2480},}
 ```
 
 ## Pre-requisite
