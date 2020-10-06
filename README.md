@@ -17,6 +17,10 @@ https://arxiv.org/abs/2005.05267
 }
 ```
 
+# Virtual Oral Presentation (YouTube)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/BSa8dIZI0cc/0.jpg)](https://www.youtube.com/watch?v=BSa8dIZI0cc)
+
 ## Pre-requisite
 - Ubuntu 18.04 / Windows 7 or later
 - NVIDIA Graphics card
