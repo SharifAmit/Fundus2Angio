@@ -1,7 +1,5 @@
 data/
 Dataset/
-*.png
-*.jpeg
 *.tiff
 *.tif
 *.h5
