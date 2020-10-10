@@ -1,6 +1,6 @@
 # ISVC2020 Fundus2Angio
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/fundus2angio-a-novel-conditional-gan/fundus-to-angiography-generation-on)](https://paperswithcode.com/sota/fundus-to-angiography-generation-on?p=fundus2angio-a-novel-conditional-gan)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/fundus2angio-a-novel-conditional-gan/fundus-to-angiography-generation-on-fundus)](https://paperswithcode.com/sota/fundus-to-angiography-generation-on-fundus?p=fundus2angio-a-novel-conditional-gan)
 
 This code is part of the supplementary materials for the ISVC 2020 for our paper Fundus2Angio: A Conditional GAN Architecture for Generating Fluorescein Angiography Images from Retinal Fundus Photography . The paper has since been accpeted to ISVC 2020 and will be preseneted in October 2020.
 
