@@ -101,16 +101,15 @@ python3 convert_npz.py --outfile_name=fundus2angio --input_dim=512 --datadir=dat
 
 - Type this in terminal to run the train.py file
 ```
-python3 train.py --npz_file=fundus2angio --batch=4 --epoch=100 --savedir=Fundus2Angio
+python3 train.py --npz_file=fundus2angio --batch=4 --epochs=100
 ```
 - There are different flags to choose from. Not all of them are mandatory
 
 ```
-   '--npz_file', type=str, default='attenton2angio', help='path/to/npz/file'
+   '--npz_file', type=str, default='fundus2angio', help='path/to/npz/file'
    '--batch_size', type=int, default=4
    '--input_dim', type=int, default=512
-   '--epoch', type=int, default=100
-   '--savedir', type=str, required=False, help='path/to/save_directory',default='Fundus2Angio'
+   '--epochs', type=int, default=100
 ```
 
 # License
