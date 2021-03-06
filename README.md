@@ -12,11 +12,13 @@ https://arxiv.org/abs/2005.05267
 ```
 # Citation 
 ```
-@article{kamran2020fundus2angio,
-  title={Fundus2Angio: A Novel Conditional GAN Architecture for Generating Fluorescein Angiography Images from Retinal Fundus Photography},
-  author={Kamran, Sharif Amit and Hossain, Khondker Fariha and Tavakkoli, Alireza and Zuckerbrod, Stewart Lee},
-  journal={arXiv preprint arXiv:2005.05267},
-  year={2020}
+@inproceedings{kamran2020fundus2angio,
+  title={Fundus2Angio: A Conditional GAN Architecture for Generating Fluorescein Angiography Images from Retinal Fundus Photography},
+  author={Kamran, Sharif Amit and Hossain, Khondker Fariha and Tavakkoli, Alireza and Zuckerbrod, Stewart and Baker, Salah A and Sanders, Kenton M},
+  booktitle={International Symposium on Visual Computing},
+  pages={125--138},
+  year={2020},
+  organization={Springer}
 }
 ```
 
