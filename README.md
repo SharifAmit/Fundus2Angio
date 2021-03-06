@@ -48,7 +48,70 @@ sudo pip3 install keras==2.3.1
 sudo pip3 -r requirements.txt
 ```
 
+
 ### Dataset download link for Hajeb et al.
 ```
 https://sites.google.com/site/hosseinrabbanikhorasgani/datasets-1/fundus-fluorescein-angiogram-photographs--colour-fundus-images-of-diabetic-patients
 ```
+- Please cite the paper if you use their data
+```
+@article{hajeb2012diabetic,
+  title={Diabetic retinopathy grading by digital curvelet transform},
+  author={Hajeb Mohammad Alipour, Shirin and Rabbani, Hossein and Akhlaghi, Mohammad Reza},
+  journal={Computational and mathematical methods in medicine},
+  volume={2012},
+  year={2012},
+  publisher={Hindawi}
+}
+```
+- Folder structure for training given below. Please make sure it matches with your local repository.
+├── Dataset
+|   ├──ABNORMAL
+|   ├──NORMAL
+
+### Dataset Pre-processing
+
+- Type this in terminal to run the random_crop.py file
+```
+python3 random_crop.py --output_dir=data --input_dim=512 --datadir=Dataset
+```
+- There are different flags to choose from. Not all of them are mandatory.
+```
+    '--input_dim', type=int, default=512
+    '--n_crops', type=int, default=50
+    '--datadir', type=str, required=True, help='path/to/data_directory',default='Dataset'
+    '--output_dir', type=str, default='data'   
+```
+
+### NPZ file conversion
+- Convert all the images to npz format
+```
+python3 convert_npz.py --outfile_name=fundus2angio --input_dim=512 --datadir=data --n_crops=50
+```
+- There are different flags to choose from. Not all of them are mandatory.
+```
+    '--input_dim', type=int, default=512
+    '--n_crops', type=int, default=50
+    '--datadir', type=str, required=True, help='path/to/data_directory',default='data'
+    '--outfile_name', type=str, default='fundus2angio'
+    '--n_images', type=int, default=17
+```
+
+## Training
+
+- Type this in terminal to run the train.py file
+```
+python3 train.py --npz_file=fundus2angio --batch=4 --epoch=100 --savedir=Fundus2Angio
+```
+- There are different flags to choose from. Not all of them are mandatory
+
+```
+   '--npz_file', type=str, default='attenton2angio', help='path/to/npz/file'
+   '--batch_size', type=int, default=4
+   '--input_dim', type=int, default=512
+   '--epoch', type=int, default=100
+   '--savedir', type=str, required=False, help='path/to/save_directory',default='Fundus2Angio'
+```
+
+# License
+The code is released under the MIT License, you can read the license file included in the repository for details.
