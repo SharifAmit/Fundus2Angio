@@ -64,11 +64,12 @@ https://sites.google.com/site/hosseinrabbanikhorasgani/datasets-1/fundus-fluores
   publisher={Hindawi}
 }
 ```
-- Folder structure for training given below. Please make sure it matches with your local repository.
+- Folder structure for data pre-processing given below. Please make sure it matches with your local repository.
+```
 ├── Dataset
 |   ├──ABNORMAL
 |   ├──NORMAL
-
+```
 ### Dataset Pre-processing
 
 - Type this in terminal to run the random_crop.py file
