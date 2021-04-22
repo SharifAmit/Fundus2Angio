@@ -1,5 +1,5 @@
 from matplotlib import pyplot
-from real_fake_data_loader import generate_real_data, generate_fake_data_coarse, generate_fake_data_fine, resize
+from src.real_fake_data_loader import generate_real_data, generate_fake_data_coarse, generate_fake_data_fine, resize
 import os
 
 def visualize_save_weight(step,g_global_model,g_local_model, dataset, n_samples=3,savedir='weights_plots'):
