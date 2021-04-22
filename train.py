@@ -164,7 +164,7 @@ if __name__ == "__main__":
     image_shape_xglobal = (in_size/2,in_size/2,64)
     ndf=32
     ncf=64
-    nff=64
+    nff=32
     # define discriminator models
     d_model1 = discriminator(image_shape_fine,label_shape_fine,ndf,n_downsampling=0,name="D1") # D1 Fine
     d_model2 = discriminator(image_shape_fine,label_shape_fine,ndf,n_downsampling=1,name="D2") # D2 Fine 
