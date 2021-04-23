@@ -152,8 +152,8 @@ if __name__ == "__main__":
     
     # define input shape based on the loaded dataset
     in_size = args.input_dim
-    image_shape_coarse = (in_size/2,in_size/2,3)
-    label_shape_coarse = (in_size/2,in_size/2,1)
+    image_shape_coarse = (in_size//2,in_size//2,3)
+    label_shape_coarse = (in_size//2,in_size//2,1)
 
     #image_shape_coarse2 = (in_size/4,in_size/4,3)
     #label_shape_coarse2 = (in_size/4,in_size/4,1)
@@ -161,7 +161,7 @@ if __name__ == "__main__":
     image_shape_fine = (in_size,in_size,3)
     label_shape_fine = (in_size,in_size,1)
 
-    image_shape_xglobal = (in_size/2,in_size/2,64)
+    image_shape_xglobal = (in_size//2,in_size//2,64)
     ndf=32
     ncf=64
     nff=32
