@@ -114,6 +114,12 @@ def train(d_model1, d_model2, d_model3, d_model4, g_global_model, g_local_model,
 
         gan_loss, _,_,_,_,_,_ = gan_model.train_on_batch([X_realA,X_realA_half,x_global], [y1, y2, y2, y3, X_realB_half, X_realB])
         # summarize summarize_performancetory
+        
+        # summarize performance
+        print('>%d, d1[%.3f] d2[%.3f] d3[%.3f] d4[%.3f] d5[%.3f] d6[%.3f] d7[%.3f] d8[%.3f] g_g[%.3f] g_l[%.3f] gan[%.3f]' % 
+              (i+1, d_loss1, d_loss2, d_loss3, d_loss4, d_loss5, d_loss6, d_loss7, d_loss8, 
+               g_global_loss, g_local_loss, gan_loss))
+        
         d1_hist.append(d_loss1)
         d2_hist.append(d_loss2)
         d3_hist.append(d_loss3)
